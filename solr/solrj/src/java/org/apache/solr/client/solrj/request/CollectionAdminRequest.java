@@ -432,6 +432,7 @@ public abstract class CollectionAdminRequest<T extends CollectionAdminResponse> 
 
     protected String configName = null;
     protected String createNodeSet = null;
+    protected Boolean createNodeSetShuffle = null;
     protected String routerName;
     protected String policy;
     protected String shards;
@@ -475,6 +476,7 @@ public abstract class CollectionAdminRequest<T extends CollectionAdminResponse> 
     }
 
     public Create setCreateNodeSet(String nodeSet) { this.createNodeSet = nodeSet; return this; }
+    public Create setCreateNodeSetShuffle(boolean nodeSetShuffle) { this.createNodeSetShuffle = nodeSetShuffle; return this; }
     public Create setRouterName(String routerName) { this.routerName = routerName; return this; }
     public Create setRouterField(String routerField) { this.routerField = routerField; return this; }
     public Create setMaxShardsPerNode(Integer numShards) { this.maxShardsPerNode = numShards; return this; }
@@ -495,6 +497,7 @@ public abstract class CollectionAdminRequest<T extends CollectionAdminResponse> 
 
     public String getConfigName()  { return configName; }
     public String getCreateNodeSet() { return createNodeSet; }
+    public Boolean getCreateNodeSetShuffle() { return createNodeSetShuffle; }
     public String getRouterName() { return  routerName; }
     public String getShards() { return  shards; }
     public Integer getNumShards() { return numShards; }
@@ -555,6 +558,8 @@ public abstract class CollectionAdminRequest<T extends CollectionAdminResponse> 
         params.set("collection.configName", configName);
       if (createNodeSet != null)
         params.set(CREATE_NODE_SET_PARAM, createNodeSet);
+      if (createNodeSetShuffle != null)
+        params.set(CREATE_NODE_SET_SHUFFLE_PARAM, createNodeSetShuffle);
       if (numShards != null) {
         params.set( ZkStateReader.NUM_SHARDS_PROP, numShards);
       }
